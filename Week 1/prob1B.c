@@ -26,7 +26,11 @@ int main(int argc, char* argv[]){
         }
     }
 
-    printf("%c, %d", mostFrequentLetter, frequencyCount);
+    if (mostFrequentLetter == 128){
+        printf("");
+    }else{
+        printf("%c %d", mostFrequentLetter, frequencyCount);
+    }
 
 }
 
