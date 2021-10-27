@@ -19,18 +19,19 @@ int main(int argc, char* argv[]){
         count[argv[longestIndex][j]]++;
     }
 
-    for (int k = 0; k <= 128; k++){
+    for (int k = 0; k < 128; k++){
         if (count[k] > frequencyCount){
             frequencyCount = count[k];
             mostFrequentLetter = k;
         }
     }
 
-    if (mostFrequentLetter == 128){
-        printf("");
-    }else{
-        printf("%c %d", mostFrequentLetter, frequencyCount);
-    }
+    // if (mostFrequentLetter == 0){
+    //     printf("");
+    // }else{
+    //     printf("%c %d", mostFrequentLetter, frequencyCount);
+    // }
+    printf("%c %d\n", mostFrequentLetter, frequencyCount);
 
 }
 
