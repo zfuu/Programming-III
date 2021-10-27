@@ -12,15 +12,9 @@
 int main(int argc, char *argv[]){
     char buf[N];
     char c;
-    int fd, i, j, n, a, k=0, count=0;
+    int fd, i, j, n, k=0, count=0;
     int len = strlen(argv[1]);
-    char target[len+1];
-    for ( a = 0; a < len; a++){
-        target[a] = argv[1][a];
-    }
-    target[len] = ' ';
-    // printf("[%s]", target);
-
+    // printf("len = %d\n",len);
     for (i = 2; i < argc; i++) {
         if ((fd = open(argv[i], O_RDONLY)) < 0) {
             fprintf(stderr, "cannot open %s\n", argv[i]);
@@ -31,28 +25,30 @@ int main(int argc, char *argv[]){
             // printf("\n");
             // printf("%d\n",n);
             // printf("%s\n", buf);
+            buf[n] = ' ';
             for (j = 0; j < n; j++) {
                 // state diagram to count the appearance of argv[1]
                 c = tolower(buf[j]);
                 // printf("%d%c ", k,c);
-                // printf("%d[%c?%c]/%d ", j,c,argv[1][k],k);
+                // printf("%d[%c?%c]%d//[%c] ", j,c,argv[1][k],k,buf[j+1]);
                 
                 // printf("%c", buf[j]);
-                if (c == target[k]){
+                if (c == argv[1][k]){
                     // printf("%c", c);
                     k += 1;
                     // if ((k == len && !isalpha(buf[j+1])) || j==N && k>0){
                     // if (j != n-1){
-                        if (k == len+1){
+                        if ((k == len && !isalpha(buf[j+1]))){
                             count ++;
                             k = 0;
+                            // printf("counttttted!");
                         }
                     
                     // }
                     
 
 
-                }else if (c != target[k]){
+                }else if (c != argv[1][k]){
                     k = 0;
                 }  
             }            
@@ -60,6 +56,6 @@ int main(int argc, char *argv[]){
         close(fd);
     }
 
-    // printf("\n");
+    printf("\n\n");
     printf("%d\n", count);
 }
