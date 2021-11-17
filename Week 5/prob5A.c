@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
     for(p=list; p != NULL; p = p->next){
         
         for (q = p->next; q != NULL; q = q->next){
-            if (p->word[0] > q->word[0]){
+            if (strcmp(p->word, q->word)>0){
                 char *temp = p->word;
                 p->word = q->word;
                 q->word = temp;
